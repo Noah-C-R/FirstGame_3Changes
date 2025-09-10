@@ -13,8 +13,8 @@ func _on_timer_timeout() -> void:
 
 func _on_player_health_depleted() -> void:
 	%GameOverScreen.visible = true
-	get_tree().paused = true
 
 
-func _on_button_pressed() -> void:
+func _on_button_pressed() -> void: #used to reload scene
+	get_tree().paused = false
 	get_tree().reload_current_scene()
