@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal on_death
+
 var health := 2
 var speed := 300.0
 
@@ -20,6 +22,8 @@ func take_damage():
 	
 	if health == 0:
 		queue_free()
+		
+		get_parent().get_node("ScoreScreen").add_points()
 		
 		const SMOKE_EXPLOSION = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SMOKE_EXPLOSION.instantiate()
