@@ -13,6 +13,7 @@ _data = {
 point_count = 5
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_qqaft")
 
@@ -60,11 +61,13 @@ position = Vector2(1492, 707)
 position = Vector2(284, 319)
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 1
 wait_time = 0.5
 autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 script = ExtResource("4_edxvn")
 
