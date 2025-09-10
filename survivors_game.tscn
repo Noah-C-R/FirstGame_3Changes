@@ -63,7 +63,6 @@ autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
 anchors_preset = 15
@@ -91,5 +90,24 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 133
 text = "Game Over!"
 
+[node name="Button" type="Button" parent="GameOverScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 130.0
+offset_right = 64.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165083, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+text = "Restart"
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOverScreen/ColorRect/Button" to="." method="_on_button_pressed"]
