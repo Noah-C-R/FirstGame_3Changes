@@ -6,7 +6,8 @@ var health
 var walk_speed
 
 func _ready():
-	set_stats()
+	set_speed()
+	recharge_health()
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -27,12 +28,12 @@ func _physics_process(delta):
 		if health <= 0.0:
 			health_depleted.emit()
 
-func set_stats():
-	health = StatsHolder.stat_options["Health"][0]
+func set_speed():
 	walk_speed = StatsHolder.stat_options["Movement"][0]
-	print("Health is now: ", str(health))
 	print("Movement speed is now: ", str(walk_speed))
 
+func recharge_health():
+	health = StatsHolder.stat_options["Health"][0]
 
 func _on_exit_button_pressed() -> void:
-	set_stats()
+	set_speed()
