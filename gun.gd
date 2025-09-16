@@ -8,7 +8,7 @@ func _physics_process(delta):
 
 
 func shoot():
-	const BULLET = preload("res://bullet.tscn") #preload("item path") is used to load something at start
+	const BULLET = preload("res://scenes/bullet.tscn") #preload("item path") is used to load something at start
 	var new_bullet = BULLET.instantiate() 
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
@@ -17,3 +17,7 @@ func shoot():
 
 func _on_timer_timeout() -> void:
 	shoot()
+	
+
+func shorten_shoot_time() -> void:
+	%BulletTimer.wait_time = StatsHolder.stat_options["Firing"][0]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvus8sbvddo1h"]
+[gd_scene load_steps=9 format=3 uid="uid://dvus8sbvddo1h"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cuhcl3x0gy8e1" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="PackedScene" uid="uid://cw8eoylmgrm53" path="res://gun.tscn" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://cw8eoylmgrm53" path="res://scenes/gun.tscn" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://cnlpwkkc76qg8" path="res://scenes/lvl_up_label.tscn" id="4_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 33.0
@@ -60,3 +61,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
 value = 100.0
 show_percentage = false
+
+[node name="LevelUpHolder" type="Marker2D" parent="."]
+position = Vector2(0, -170)
+
+[node name="Sprite2D" parent="LevelUpHolder" instance=ExtResource("4_hqtel")]

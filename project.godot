@@ -77,7 +77,15 @@ Settings/Show_Tooltips=true
 config/name="Your First 2D Game With Godot 4: START (GDQuest)"
 run/main_scene="uid://1a2ko7bwvol1"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.png"
+config/icon="res://sprites/icon.png"
+
+[audio]
+
+buses/default_bus_layout="res://sprites/default_bus_layout.tres"
+
+[autoload]
+
+StatsHolder="*res://stats_holder.gd"
 
 [display]
 

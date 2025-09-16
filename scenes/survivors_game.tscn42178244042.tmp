@@ -1,0 +1,398 @@
+[gd_scene load_steps=13 format=3 uid="uid://1a2ko7bwvol1"]
+
+[ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://survivors_game.gd" id="1_qqaft"]
+[ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
+[ext_resource type="PackedScene" uid="uid://dvus8sbvddo1h" path="res://scenes/player.tscn" id="2_l26od"]
+[ext_resource type="Script" uid="uid://t1pld8lxapc1" path="res://score_screen.gd" id="4_7jj1j"]
+[ext_resource type="Script" uid="uid://cr6jjuhaqkj62" path="res://game_over_screen.gd" id="4_edxvn"]
+[ext_resource type="Texture2D" uid="uid://dogkyjudpyc3j" path="res://sprites/Fire Rate Button.png" id="5_pk6fm"]
+[ext_resource type="Script" uid="uid://cuglwpsklql4v" path="res://stats_holder.gd" id="6_edxvn"]
+[ext_resource type="Texture2D" uid="uid://dkh6m887ya5e0" path="res://sprites/Gem.png" id="6_getvi"]
+[ext_resource type="Texture2D" uid="uid://ddrk6inbxlt0w" path="res://sprites/Speed Button.png" id="7_mx11s"]
+[ext_resource type="Texture2D" uid="uid://clud5va40el2l" path="res://sprites/Health Button.png" id="8_l3cnu"]
+[ext_resource type="Texture2D" uid="uid://7wqyyeng286i" path="res://sprites/X Button.png" id="9_l3cnu"]
+
+[sub_resource type="Curve2D" id="Curve2D_7jj1j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2137, 1252, 0, 0, 0, 0, -335, 1262, 0, 0, 0, 0, -335, -309, 0, 0, 0, 0, 2138, -304, 0, 0, 0, 0, 2137, 1252)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+y_sort_enabled = true
+script = ExtResource("1_qqaft")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_right = 1943.0
+offset_bottom = 1101.0
+
+[node name="Player" parent="." instance=ExtResource("2_l26od")]
+position = Vector2(944, 531)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-944, -531)
+curve = SubResource("Curve2D_7jj1j")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(2137, 1252)
+rotation = 3.13755
+
+[node name="TreesNode" type="Node" parent="."]
+
+[node name="PineTree" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(776, 408)
+
+[node name="PineTree2" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(1172, 846)
+
+[node name="PineTree3" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(436, 797)
+
+[node name="PineTree4" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(1222, 275)
+
+[node name="PineTree5" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(1309, 395)
+
+[node name="PineTree6" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(1684, 184)
+
+[node name="PineTree7" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(1492, 707)
+
+[node name="PineTree8" parent="TreesNode" instance=ExtResource("1_y3pti")]
+position = Vector2(284, 319)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.5
+autostart = true
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+script = ExtResource("4_edxvn")
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 0.803922)
+
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.5
+offset_right = 379.5
+offset_bottom = 182.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 133
+text = "Game Over!"
+
+[node name="FinalScoreLabel" type="Label" parent="GameOverScreen/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.5
+offset_top = -91.0
+offset_right = 379.5
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 103
+text = "Score: X"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOverScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 130.0
+offset_right = 64.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165083, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+text = "Restart"
+
+[node name="UpgradeScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("4_edxvn")
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 0.803922)
+
+[node name="UpgradeHeaderLabel" type="Label" parent="UpgradeScreen/ColorRect"]
+self_modulate = Color(1, 0.764706, 0.376471, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.5
+offset_right = 379.5
+offset_bottom = 182.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 133
+text = "Level Up!"
+horizontal_alignment = 1
+
+[node name="UpgradeHeaderLabel2" type="Label" parent="UpgradeScreen/ColorRect/UpgradeHeaderLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.835165
+anchor_right = 0.5
+anchor_bottom = 0.835165
+offset_left = -297.0
+offset_right = 297.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 63
+text = "Choose an Upgrade"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FireRateButton" type="Button" parent="UpgradeScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 130.0
+offset_right = 64.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_icons/icon = ExtResource("5_pk6fm")
+text = "Fire Rate"
+icon = ExtResource("5_pk6fm")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="CostLabel" type="Label" parent="UpgradeScreen/ColorRect/FireRateButton"]
+modulate = Color(0.721569, 0.545098, 0.964706, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294
+anchor_top = 0.862
+anchor_right = 0.724696
+anchor_bottom = 1.00276
+offset_left = -0.617996
+offset_top = -0.0440063
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "x5"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="UpgradeScreen/ColorRect/FireRateButton/CostLabel"]
+position = Vector2(27, 24.5)
+scale = Vector2(0.441861, 0.441861)
+texture = ExtResource("6_getvi")
+
+[node name="SpeedButton" type="Button" parent="UpgradeScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -483.0
+offset_top = -30.5
+offset_right = -236.0
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_icons/icon = ExtResource("5_pk6fm")
+text = "Speed"
+icon = ExtResource("7_mx11s")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="CostLabel" type="Label" parent="UpgradeScreen/ColorRect/SpeedButton"]
+modulate = Color(0.721569, 0.545098, 0.964706, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294
+anchor_top = 0.862
+anchor_right = 0.724696
+anchor_bottom = 1.00276
+offset_left = -0.617996
+offset_top = -0.0440063
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "x5"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="UpgradeScreen/ColorRect/SpeedButton/CostLabel"]
+position = Vector2(27, 24.5)
+scale = Vector2(0.441861, 0.441861)
+texture = ExtResource("6_getvi")
+
+[node name="HealthButton" type="Button" parent="UpgradeScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 237.0
+offset_top = -30.5
+offset_right = 484.0
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_icons/icon = ExtResource("5_pk6fm")
+text = "Health"
+icon = ExtResource("8_l3cnu")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="CostLabel" type="Label" parent="UpgradeScreen/ColorRect/HealthButton"]
+modulate = Color(0.721569, 0.545098, 0.964706, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294
+anchor_top = 0.862
+anchor_right = 0.724696
+anchor_bottom = 1.00276
+offset_left = -0.617996
+offset_top = -0.0440063
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "x5"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="UpgradeScreen/ColorRect/HealthButton/CostLabel"]
+position = Vector2(27, 24.5)
+scale = Vector2(0.441861, 0.441861)
+texture = ExtResource("6_getvi")
+
+[node name="Button" type="Button" parent="UpgradeScreen/ColorRect"]
+modulate = Color(1, 0.496382, 0.588116, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_bottom = 102.0
+grow_horizontal = 0
+icon = ExtResource("9_l3cnu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ScoreScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_7jj1j")
+
+[node name="ScoreLabel" type="Label" parent="ScoreScreen"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 182.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.187176, 0.187176, 0.187176, 1)
+theme_override_font_sizes/font_size = 133
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="StatsHolder" type="Node" parent="."]
+script = ExtResource("6_edxvn")
+
+[node name="GemsScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="GemsScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 340.0
+offset_bottom = 135.0
+
+[node name="TextureRect" type="TextureRect" parent="GemsScreen/Control"]
+modulate = Color(0.720419, 0.544964, 0.965049, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -43.0
+offset_right = 86.0
+offset_bottom = 43.0
+grow_vertical = 2
+texture = ExtResource("6_getvi")
+
+[node name="GemsLabel" type="Label" parent="GemsScreen/Control/TextureRect"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -52.0
+offset_right = 457.0
+offset_bottom = 53.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 76
+text = "x50"
+vertical_alignment = 1
+autowrap_mode = 3
+max_lines_visible = 1
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOverScreen/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UpgradeScreen/ColorRect/FireRateButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UpgradeScreen/ColorRect/SpeedButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UpgradeScreen/ColorRect/HealthButton" to="." method="_on_button_pressed"]
+[connection signal="stat_upgrade" from="StatsHolder" to="Player" method="_on_stats_holder_stat_upgrade"]

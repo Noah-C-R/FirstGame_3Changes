@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnlpwkkc76qg8"]
+
+[ext_resource type="Texture2D" uid="uid://dxbpdrnv35s5t" path="res://sprites/Upgrade Arrow.png" id="1_reqfh"]
+[ext_resource type="Script" uid="uid://c24dj12wxfx0k" path="res://lvl_up_label.gd" id="2_xa48q"]
+
+[node name="Sprite2D" type="Sprite2D"]
+visible = false
+modulate = Color(0.0627451, 0.698039, 0.937255, 1)
+position = Vector2(94, 48)
+scale = Vector2(0.354636, 0.354636)
+texture = ExtResource("1_reqfh")
+script = ExtResource("2_xa48q")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 45.0
+offset_top = -46.0
+offset_right = 210.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 61
+text = "Movement"
+vertical_alignment = 1

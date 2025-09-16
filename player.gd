@@ -2,9 +2,11 @@ extends CharacterBody2D #extends means it adds code on top of this node's librar
 
 signal health_depleted
 
-var health = 100.0
+var health
+var walk_speed
 
-var walk_speed := 600
+func _ready():
+	set_stats()
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -24,3 +26,13 @@ func _physics_process(delta):
 		
 		if health <= 0.0:
 			health_depleted.emit()
+
+func set_stats():
+	health = StatsHolder.stat_options["Health"][0]
+	walk_speed = StatsHolder.stat_options["Movement"][0]
+
+
+func _on_stats_holder_stat_upgrade() -> void:
+	set_stats()
+	print("Health is now: ", str(health))
+	print("Movement speed is now: ", str(walk_speed))
