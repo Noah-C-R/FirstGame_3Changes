@@ -1,10 +1,8 @@
 extends Area2D
 
 
-func _physics_process(delta):
-		var enemies_in_range = get_overlapping_bodies()
-		if enemies_in_range.size() > 0: 
-				look_at(get_global_mouse_position())
+func _physics_process(_delta):
+	look_at(get_global_mouse_position())
 
 
 func shoot():
@@ -14,10 +12,11 @@ func shoot():
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
 	%ShootingPoint.add_child(new_bullet) #.add_child(node) makes the node a child
 
-
-func _on_timer_timeout() -> void:
-	shoot()
-	
-
 func shorten_shoot_time() -> void:
-	%BulletTimer.wait_time = StatsHolder.stat_options["Firing"][0]
+	%GunTimer.wait_time = clampf(StatsHolder.stat_options["Firing"][0], .01, 1)
+
+func _on_gun_timer_timeout() -> void:
+	shoot()
+
+func _on_exit_button_pressed() -> void:
+	shorten_shoot_time()

@@ -30,9 +30,9 @@ func _physics_process(delta):
 func set_stats():
 	health = StatsHolder.stat_options["Health"][0]
 	walk_speed = StatsHolder.stat_options["Movement"][0]
-
-
-func _on_stats_holder_stat_upgrade() -> void:
-	set_stats()
 	print("Health is now: ", str(health))
 	print("Movement speed is now: ", str(walk_speed))
+
+
+func _on_exit_button_pressed() -> void:
+	set_stats()

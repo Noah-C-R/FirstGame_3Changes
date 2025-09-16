@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvus8sbvddo1h"]
+[gd_scene load_steps=8 format=3 uid="uid://dvus8sbvddo1h"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cuhcl3x0gy8e1" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="PackedScene" uid="uid://cw8eoylmgrm53" path="res://scenes/gun.tscn" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://cnlpwkkc76qg8" path="res://scenes/lvl_up_label.tscn" id="4_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
@@ -37,9 +36,6 @@ position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Gun" parent="." instance=ExtResource("3_i3pqv")]
-position = Vector2(0, -52)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true

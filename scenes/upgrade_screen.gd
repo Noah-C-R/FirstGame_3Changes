@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 func _on_score_screen_level_up() -> void:
 	self.visible = true
 	#pause the game -- may need to put menus under a separate node which does not get affected by pausing
