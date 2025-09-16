@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=17 format=3 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://kq0wfw5k8wqu" path="res://scenes/fire_rate_button.gd" id="7_tg6hx"]
 [ext_resource type="Texture2D" uid="uid://clud5va40el2l" path="res://sprites/Health Button.png" id="8_l3cnu"]
 [ext_resource type="Texture2D" uid="uid://7wqyyeng286i" path="res://sprites/X Button.png" id="9_l3cnu"]
+[ext_resource type="Script" uid="uid://c0hr5rf05utbc" path="res://scenes/speed_button.gd" id="11_hs66j"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
 _data = {
@@ -190,6 +191,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="FireRateButton" type="Button" parent="UpgradeScreen/ColorRect"]
+modulate = Color(0.768627, 0.113725, 0.239216, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -202,6 +204,7 @@ offset_right = 64.0
 offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
@@ -238,6 +241,7 @@ offset_right = -210.0
 offset_bottom = 338.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
@@ -247,6 +251,7 @@ icon = ExtResource("7_mx11s")
 alignment = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
+script = ExtResource("11_hs66j")
 
 [node name="TextureRect" type="TextureRect" parent="UpgradeScreen/ColorRect/SpeedButton"]
 modulate = Color(0.720419, 0.544964, 0.965049, 1)
@@ -379,10 +384,13 @@ autostart = true
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_upgrade_screen_visibility_changed"]
+[connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_upgrade_screen_visibility_changed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/FireRateButton" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeScreen/ColorRect/SpeedButton" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_score_screen_level_up"]
+[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_score_screen_level_up"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]
