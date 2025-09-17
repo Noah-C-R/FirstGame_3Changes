@@ -9,6 +9,10 @@ func add_points():
 	score += 1
 	%ScoreLabel.text = str(score)
 	
+	if score == StatsHolder.winning_score:
+		%VictoryScreen.visible = true
+		get_tree().paused = true
+
 	if score == StatsHolder.level_thresholds[clamp(StatsHolder.level, 0, StatsHolder.level_thresholds.size() -1)]:
 		if StatsHolder.level < StatsHolder.level_thresholds.size():
 			StatsHolder.level += 1

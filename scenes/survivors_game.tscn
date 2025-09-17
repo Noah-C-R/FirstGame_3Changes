@@ -364,6 +364,58 @@ theme_override_font_sizes/font_size = 76
 text = "x0"
 vertical_alignment = 1
 
+[node name="VictoryScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VictoryScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0.064822, 0.170754, 0.285315, 0.803922)
+
+[node name="WinnerLabel" type="Label" parent="VictoryScreen/ColorRect"]
+modulate = Color(1, 0.491184, 0.721748, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.5
+offset_top = -91.0
+offset_right = 379.5
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 133
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VictoryScreen/ColorRect"]
+modulate = Color(1, 0.490196, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 130.0
+offset_right = 64.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165083, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+text = "Play Again?"
+
 [node name="StatsHolder" type="Node" parent="."]
 script = ExtResource("6_edxvn")
 
@@ -390,5 +442,6 @@ autostart = true
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
 [connection signal="draw" from="GemsScreen/TextureRect/GemsLabel" to="GemsScreen" method="_on_gems_label_draw"]
+[connection signal="pressed" from="VictoryScreen/ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="gems_changed" from="StatsHolder" to="GemsScreen" method="_on_stats_holder_gems_changed"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]
