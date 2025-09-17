@@ -34,6 +34,7 @@ func set_speed():
 
 func recharge_health():
 	health = StatsHolder.stat_options["Health"][0]
+	%ProgressBar.value = health
 
 func _on_exit_button_pressed() -> void:
 	set_speed()
