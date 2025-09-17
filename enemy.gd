@@ -25,7 +25,15 @@ func take_damage():
 		
 		get_parent().get_node("ScoreScreen").add_points()
 		
+		spawn_gem()
+		
 		const SMOKE_EXPLOSION = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SMOKE_EXPLOSION.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+
+func spawn_gem():
+	const GEM = preload("res://items/gem.tscn")
+	var gem_instance = GEM.instantiate()
+	get_parent().add_child(gem_instance)
+	gem_instance.global_position = global_position
