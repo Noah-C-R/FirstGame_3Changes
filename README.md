@@ -1,4 +1,4 @@
-# FirstGame_3Changes
+# Ongoing Dev Log - Look here for each assignment!
 
 [Assignment 2 - 3 Gameplay Loops]
 1) The player has a HARD GATE of reaching 175 kills to win the game {Est. time: 30 mins}
