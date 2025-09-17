@@ -379,6 +379,7 @@ autostart = true
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/HealthButton" method="_on_score_screen_level_up"]
+[connection signal="level_up" from="ScoreScreen" to="StatsHolder" method="_on_score_screen_level_up"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_upgrade_screen_visibility_changed"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_upgrade_screen_visibility_changed"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/HealthButton" method="_on_upgrade_screen_visibility_changed"]
