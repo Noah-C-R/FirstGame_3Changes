@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=19 format=3 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://c0hr5rf05utbc" path="res://scenes/speed_button.gd" id="11_hs66j"]
 [ext_resource type="Script" uid="uid://d2c55e5evoa35" path="res://scenes/health_button.gd" id="13_fp0yo"]
 [ext_resource type="Script" uid="uid://b4drvwbohnr0m" path="res://scenes/gems_screen.gd" id="17_7yhjp"]
-[ext_resource type="PackedScene" uid="uid://dobl5uccrpfw3" path="res://items/gem.tscn" id="18_46648"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
 _data = {
@@ -372,9 +371,6 @@ script = ExtResource("6_edxvn")
 unique_name_in_owner = true
 wait_time = 0.7
 autostart = true
-
-[node name="Gem" parent="." instance=ExtResource("18_46648")]
-position = Vector2(635, 470)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

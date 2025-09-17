@@ -35,5 +35,5 @@ func take_damage():
 func spawn_gem():
 	const GEM = preload("res://items/gem.tscn")
 	var gem_instance = GEM.instantiate()
-	get_parent().add_child(gem_instance)
+	get_parent().call_deferred("add_child", gem_instance)
 	gem_instance.global_position = global_position
