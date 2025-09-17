@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=19 format=3 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://7wqyyeng286i" path="res://sprites/X Button.png" id="9_l3cnu"]
 [ext_resource type="Script" uid="uid://c0hr5rf05utbc" path="res://scenes/speed_button.gd" id="11_hs66j"]
 [ext_resource type="Script" uid="uid://d2c55e5evoa35" path="res://scenes/health_button.gd" id="13_fp0yo"]
+[ext_resource type="Script" uid="uid://b4drvwbohnr0m" path="res://scenes/gems_screen.gd" id="17_7yhjp"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
 _data = {
@@ -51,30 +52,30 @@ rotation = 3.13755
 [node name="Gun" parent="Player" instance=ExtResource("3_bg3rl")]
 position = Vector2(0, -45)
 
-[node name="TreesNode" type="Node" parent="."]
+[node name="EnvironmentNode" type="Node" parent="."]
 
-[node name="PineTree" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(776, 408)
 
-[node name="PineTree2" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree2" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(1172, 846)
 
-[node name="PineTree3" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree3" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(436, 797)
 
-[node name="PineTree4" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree4" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(1222, 275)
 
-[node name="PineTree5" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree5" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(1309, 395)
 
-[node name="PineTree6" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree6" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(1684, 184)
 
-[node name="PineTree7" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree7" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(1492, 707)
 
-[node name="PineTree8" parent="TreesNode" instance=ExtResource("1_y3pti")]
+[node name="PineTree8" parent="EnvironmentNode" instance=ExtResource("1_y3pti")]
 position = Vector2(284, 319)
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -145,6 +146,24 @@ theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_font_sizes/font_size = 56
 text = "Restart"
+
+[node name="ScoreScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_7jj1j")
+
+[node name="ScoreLabel" type="Label" parent="ScoreScreen"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 182.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.187176, 0.187176, 0.187176, 1)
+theme_override_font_sizes/font_size = 133
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="UpgradeScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -316,49 +335,21 @@ icon = ExtResource("9_l3cnu")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ScoreScreen" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_7jj1j")
-
-[node name="ScoreLabel" type="Label" parent="ScoreScreen"]
-unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -112.0
-offset_right = 112.0
-offset_bottom = 182.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.187176, 0.187176, 0.187176, 1)
-theme_override_font_sizes/font_size = 133
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="StatsHolder" type="Node" parent="."]
 script = ExtResource("6_edxvn")
 
-[node name="GemsScreen" type="CanvasLayer" parent="."]
+[node name="GemsScreen" type="CanvasLayer" parent="StatsHolder"]
 unique_name_in_owner = true
+script = ExtResource("17_7yhjp")
 
-[node name="Control" type="Control" parent="GemsScreen"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 340.0
-offset_bottom = 135.0
-
-[node name="TextureRect" type="TextureRect" parent="GemsScreen/Control"]
+[node name="TextureRect" type="TextureRect" parent="StatsHolder/GemsScreen"]
 modulate = Color(0.720419, 0.544964, 0.965049, 1)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -43.0
 offset_right = 86.0
-offset_bottom = 43.0
-grow_vertical = 2
+offset_bottom = 86.0
 texture = ExtResource("6_getvi")
 
-[node name="GemsLabel" type="Label" parent="GemsScreen/Control/TextureRect"]
+[node name="GemsLabel" type="Label" parent="StatsHolder/GemsScreen/TextureRect"]
+unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
 anchors_preset = 6
@@ -373,10 +364,8 @@ offset_bottom = 53.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 76
-text = "x50"
+text = "x0"
 vertical_alignment = 1
-autowrap_mode = 3
-max_lines_visible = 1
 
 [node name="GunTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -386,6 +375,10 @@ autostart = true
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen" method="_on_score_screen_level_up"]
+[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_score_screen_level_up"]
+[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_score_screen_level_up"]
+[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/HealthButton" method="_on_score_screen_level_up"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_upgrade_screen_visibility_changed"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_upgrade_screen_visibility_changed"]
 [connection signal="visibility_changed" from="UpgradeScreen" to="UpgradeScreen/ColorRect/HealthButton" method="_on_upgrade_screen_visibility_changed"]
@@ -395,8 +388,5 @@ autostart = true
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
-[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen" method="_on_score_screen_level_up"]
-[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_score_screen_level_up"]
-[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_score_screen_level_up"]
-[connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/HealthButton" method="_on_score_screen_level_up"]
+[connection signal="gems_changed" from="StatsHolder" to="StatsHolder/GemsScreen" method="_on_stats_holder_gems_changed"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]
