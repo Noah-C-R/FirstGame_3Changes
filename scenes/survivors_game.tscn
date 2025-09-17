@@ -335,20 +335,17 @@ icon = ExtResource("9_l3cnu")
 icon_alignment = 1
 expand_icon = true
 
-[node name="StatsHolder" type="Node" parent="."]
-script = ExtResource("6_edxvn")
-
-[node name="GemsScreen" type="CanvasLayer" parent="StatsHolder"]
+[node name="GemsScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 script = ExtResource("17_7yhjp")
 
-[node name="TextureRect" type="TextureRect" parent="StatsHolder/GemsScreen"]
+[node name="TextureRect" type="TextureRect" parent="GemsScreen"]
 modulate = Color(0.720419, 0.544964, 0.965049, 1)
 offset_right = 86.0
 offset_bottom = 86.0
 texture = ExtResource("6_getvi")
 
-[node name="GemsLabel" type="Label" parent="StatsHolder/GemsScreen/TextureRect"]
+[node name="GemsLabel" type="Label" parent="GemsScreen/TextureRect"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -366,6 +363,9 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 76
 text = "x0"
 vertical_alignment = 1
+
+[node name="StatsHolder" type="Node" parent="."]
+script = ExtResource("6_edxvn")
 
 [node name="GunTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -388,5 +388,6 @@ autostart = true
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
-[connection signal="gems_changed" from="StatsHolder" to="StatsHolder/GemsScreen" method="_on_stats_holder_gems_changed"]
+[connection signal="draw" from="GemsScreen/TextureRect/GemsLabel" to="GemsScreen" method="_on_gems_label_draw"]
+[connection signal="gems_changed" from="StatsHolder" to="GemsScreen" method="_on_stats_holder_gems_changed"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]
