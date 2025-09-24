@@ -1,5 +1,21 @@
 # Ongoing Dev Log - Look here for each assignment!
 
+[Assignment 3 - Juice & Polish]
+Audio credits: https://freesound.org/people/Jofae/sounds/368651 https://freesound.org/people/hotpin7/sounds/819269 https://freesound.org/people/high_festiva/sounds/194439 https://freesound.org/people/ryansitz/sounds/387834/ https://freesound.org/people/Sunsai/sounds/415804/ 
+Confetti particle tutorial: https://gist.github.com/benmccown/52eb2d9b0a2899fe4d6d6aea6514eafb
+
+* The goal for polishing here was to learn how to use GPU and CPU particle system 2D nodes {Est. time: 4 hrs}
+     * Collectible gems now play a sound and display sparks
+     * When the player levels up they emit stars and a jingle plays
+* A large portion of my time was consumed with trying to create a global class which would allow for particles to be spawned in by referring to a dictionary system which would then play corresponding audio however this created some headaches with establishing proper references
+
+* Secondary goal was to implement audio {Est. time: 2 hrs}
+     * The game now has background music!
+     * A victory fanfare jingle plays if the player reaches the end
+* Freesound.org was crucial for finding audio clips and Godot's system is relatively easy to use
+
+
+
 [Assignment 2 - 3 Gameplay Loops]
 1) The player has a HARD GATE of reaching 175 kills to win the game {Est. time: 30 mins}
 2) The player can collect gems dropped by enemies (FUNNEL), and those can be spent (SINK) on upgrading movement speed, fire speed, or a health refil {Est. time: 3 hrs}
