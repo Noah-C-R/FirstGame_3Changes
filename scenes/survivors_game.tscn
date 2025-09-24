@@ -430,7 +430,7 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -1.0
+volume_db = -10.74
 
 [node name="GameplayFXNode" type="Node2D" parent="."]
 unique_name_in_owner = true
