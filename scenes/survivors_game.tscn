@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=27 format=3 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://code/survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://b4drvwbohnr0m" path="res://scenes/gems_screen.gd" id="17_7yhjp"]
 [ext_resource type="Script" uid="uid://bka4xkmmhptny" path="res://scenes/victory_screen.gd" id="17_76kcq"]
 [ext_resource type="PackedScene" uid="uid://bh1ppd0a8vv0o" path="res://particles/confetti_particles.tscn" id="17_46648"]
+[ext_resource type="AudioStream" uid="uid://cd4idl8asj7q" path="res://audio/victory.wav" id="19_8gmy3"]
 [ext_resource type="Script" uid="uid://bxo1wu7xcod0w" path="res://code/gameplay_fx_node.gd" id="19_h0ha7"]
 [ext_resource type="Script" uid="uid://boyjqv4m2h336" path="res://scenes/start_screen.gd" id="19_huv6e"]
 [ext_resource type="Texture2D" uid="uid://2wdhd6p21rs4" path="res://sprites/Play Button.png" id="19_rauhl"]
@@ -447,6 +448,7 @@ lifetime = 10.35
 visibility_rect = Rect2(-500, -100, 1000, 200)
 
 [node name="VictoryAudioPlayer" type="AudioStreamPlayer" parent="VictoryScreen"]
+stream = ExtResource("19_8gmy3")
 script = SubResource("GDScript_ym3gj")
 
 [node name="StartScreen" type="CanvasLayer" parent="."]
@@ -538,6 +540,7 @@ unique_name_in_owner = true
 script = ExtResource("19_h0ha7")
 
 [node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("21_ym3gj")
 volume_db = -10.0
 autoplay = true

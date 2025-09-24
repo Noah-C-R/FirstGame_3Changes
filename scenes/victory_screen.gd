@@ -6,4 +6,5 @@ extends CanvasLayer
 
 func _on_visibility_changed() -> void:
 	confetti_particles.emitting = true
+	%BackgroundAudioPlayer.stop()
 	victory_audio_player.play()
