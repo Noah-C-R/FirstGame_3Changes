@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvus8sbvddo1h"]
+[gd_scene load_steps=10 format=3 uid="uid://dvus8sbvddo1h"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://cuhcl3x0gy8e1" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cuhcl3x0gy8e1" path="res://code/player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://dshktu6jnph2b" path="res://particles/stars_partcles.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://cnlpwkkc76qg8" path="res://scenes/lvl_up_label.tscn" id="4_hqtel"]
+[ext_resource type="PackedScene" uid="uid://cjtf4h2us3jnw" path="res://particles/gem_particles.tscn" id="5_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 33.0
@@ -63,3 +65,10 @@ show_percentage = false
 position = Vector2(0, -170)
 
 [node name="Sprite2D" parent="LevelUpHolder" instance=ExtResource("4_hqtel")]
+
+[node name="Stars" parent="." instance=ExtResource("4_dqkch")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GemSparks" parent="." instance=ExtResource("5_qlg0r")]
+unique_name_in_owner = true

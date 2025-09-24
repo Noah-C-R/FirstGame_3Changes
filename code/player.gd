@@ -8,6 +8,7 @@ var walk_speed
 func _ready():
 	set_speed()
 	recharge_health()
+	
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -38,3 +39,9 @@ func recharge_health():
 
 func _on_exit_button_pressed() -> void:
 	set_speed()
+
+
+func _on_score_screen_level_up() -> void:
+	var gameplay_fx_node: Node2D = get_parent().get_node("%GameplayFXNode")
+	
+	gameplay_fx_node.display_particles("Stars", %Player.global_position)

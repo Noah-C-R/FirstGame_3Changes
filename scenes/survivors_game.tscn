@@ -1,14 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=21 format=3 uid="uid://1a2ko7bwvol1"]
 
-[ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://survivors_game.gd" id="1_qqaft"]
+[ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://code/survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
 [ext_resource type="PackedScene" uid="uid://dvus8sbvddo1h" path="res://scenes/player.tscn" id="2_l26od"]
 [ext_resource type="PackedScene" uid="uid://cw8eoylmgrm53" path="res://scenes/gun.tscn" id="3_bg3rl"]
-[ext_resource type="Script" uid="uid://t1pld8lxapc1" path="res://score_screen.gd" id="4_7jj1j"]
-[ext_resource type="Script" uid="uid://cr6jjuhaqkj62" path="res://game_over_screen.gd" id="4_edxvn"]
+[ext_resource type="Script" uid="uid://t1pld8lxapc1" path="res://code/score_screen.gd" id="4_7jj1j"]
+[ext_resource type="Script" uid="uid://cr6jjuhaqkj62" path="res://code/game_over_screen.gd" id="4_edxvn"]
 [ext_resource type="Script" uid="uid://0ym7tk5jnsjd" path="res://scenes/upgrade_screen.gd" id="5_hfi5g"]
 [ext_resource type="Texture2D" uid="uid://dogkyjudpyc3j" path="res://sprites/Fire Rate Button.png" id="5_pk6fm"]
-[ext_resource type="Script" uid="uid://cuglwpsklql4v" path="res://stats_holder.gd" id="6_edxvn"]
+[ext_resource type="Script" uid="uid://cuglwpsklql4v" path="res://code/stats_holder.gd" id="6_edxvn"]
 [ext_resource type="Texture2D" uid="uid://dkh6m887ya5e0" path="res://sprites/Gem.png" id="6_getvi"]
 [ext_resource type="Texture2D" uid="uid://ddrk6inbxlt0w" path="res://sprites/Speed Button.png" id="7_mx11s"]
 [ext_resource type="Script" uid="uid://kq0wfw5k8wqu" path="res://scenes/fire_rate_button.gd" id="7_tg6hx"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://c0hr5rf05utbc" path="res://scenes/speed_button.gd" id="11_hs66j"]
 [ext_resource type="Script" uid="uid://d2c55e5evoa35" path="res://scenes/health_button.gd" id="13_fp0yo"]
 [ext_resource type="Script" uid="uid://b4drvwbohnr0m" path="res://scenes/gems_screen.gd" id="17_7yhjp"]
+[ext_resource type="PackedScene" uid="uid://bh1ppd0a8vv0o" path="res://particles/confetti_particles.tscn" id="17_46648"]
+[ext_resource type="Script" uid="uid://bxo1wu7xcod0w" path="res://code/gameplay_fx_node.gd" id="19_h0ha7"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
 _data = {
@@ -212,7 +214,6 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="FireRateButton" type="Button" parent="UpgradeScreen/ColorRect"]
-modulate = Color(0.768627, 0.113725, 0.239216, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -416,6 +417,9 @@ theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845
 theme_override_font_sizes/font_size = 56
 text = "Play Again?"
 
+[node name="ConfettiParticles" parent="VictoryScreen" instance=ExtResource("17_46648")]
+unique_name_in_owner = true
+
 [node name="StatsHolder" type="Node" parent="."]
 script = ExtResource("6_edxvn")
 
@@ -424,9 +428,18 @@ unique_name_in_owner = true
 wait_time = 0.7
 autostart = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -1.0
+
+[node name="GameplayFXNode" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("19_h0ha7")
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="level_up" from="ScoreScreen" to="Player" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/FireRateButton" method="_on_score_screen_level_up"]
 [connection signal="level_up" from="ScoreScreen" to="UpgradeScreen/ColorRect/SpeedButton" method="_on_score_screen_level_up"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjtf4h2us3jnw"]
+
+[ext_resource type="Texture2D" uid="uid://2kl5qldq6by5" path="res://sprites/Spark.png" id="1_es0l5"]
+[ext_resource type="Script" uid="uid://px2nalnbseuj" path="res://particles/gem_particles.gd" id="2_k7f25"]
+
+[sub_resource type="Gradient" id="Gradient_7p5hm"]
+colors = PackedColorArray(0.156863, 0.0784314, 0.305882, 1, 0.423529, 0.172549, 0.854902, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 4
+texture = ExtResource("1_es0l5")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 7.06
+direction = Vector2(1, -19.975)
+spread = 180.0
+initial_velocity_min = 405.23
+initial_velocity_max = 478.76
+angular_velocity_min = 25.89
+angular_velocity_max = 228.24
+linear_accel_min = 58.82
+linear_accel_max = 100.0
+radial_accel_min = 30.39
+radial_accel_max = 100.0
+damping_min = 14.052
+damping_max = 37.092
+angle_min = -204.7
+angle_max = 232.9
+scale_amount_min = 0.0
+scale_amount_max = 2.63
+color_ramp = SubResource("Gradient_7p5hm")
+script = ExtResource("2_k7f25")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

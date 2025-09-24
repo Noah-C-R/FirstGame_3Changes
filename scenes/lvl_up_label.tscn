@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnlpwkkc76qg8"]
 
 [ext_resource type="Texture2D" uid="uid://dxbpdrnv35s5t" path="res://sprites/Upgrade Arrow.png" id="1_reqfh"]
-[ext_resource type="Script" uid="uid://c24dj12wxfx0k" path="res://lvl_up_label.gd" id="2_xa48q"]
+[ext_resource type="Script" uid="uid://c24dj12wxfx0k" path="res://code/lvl_up_label.gd" id="2_xa48q"]
 
 [node name="Sprite2D" type="Sprite2D"]
 visible = false

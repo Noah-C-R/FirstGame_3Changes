@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dshktu6jnph2b"]
+
+[ext_resource type="Texture2D" uid="uid://d1v0nnam6mq3n" path="res://sprites/Star.png" id="1_3pfoj"]
+[ext_resource type="Script" uid="uid://b32rihsvvxj7k" path="res://particles/stars_partcles.gd" id="2_gnfh8"]
+
+[sub_resource type="Gradient" id="Gradient_3pfoj"]
+offsets = PackedFloat32Array(0, 0.813155, 1)
+colors = PackedColorArray(1, 0.717647, 0.188235, 1, 1, 0.701514, 0.477265, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4m0yl"]
+gradient = SubResource("Gradient_3pfoj")
+
+[sub_resource type="Curve" id="Curve_gnfh8"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 148.182), 0.0, 0.0, 0, 0, Vector2(1, -167.077), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnfh8"]
+curve = SubResource("Curve_gnfh8")
+
+[sub_resource type="Curve" id="Curve_4m0yl"]
+_data = [Vector2(0, 0.649932), 0.0, 8.55819, 0, 0, Vector2(0.25204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.130762), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4m0yl"]
+curve = SubResource("Curve_4m0yl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdu5y"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 207.34
+angular_velocity_min = 132.35
+angular_velocity_max = 132.35
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.529
+radial_velocity_min = 180.19
+radial_velocity_max = 488.07
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.369998
+radial_accel_curve = SubResource("CurveTexture_gnfh8")
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_4m0yl")
+color_ramp = SubResource("GradientTexture1D_4m0yl")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.04
+turbulence_enabled = true
+
+[node name="Stars" type="GPUParticles2D"]
+emitting = false
+texture = ExtResource("1_3pfoj")
+lifetime = 0.9
+one_shot = true
+explosiveness = 1.0
+randomness = 0.02
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tdu5y")
+script = ExtResource("2_gnfh8")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

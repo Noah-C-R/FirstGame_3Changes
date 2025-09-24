@@ -85,7 +85,7 @@ buses/default_bus_layout="res://sprites/default_bus_layout.tres"
 
 [autoload]
 
-StatsHolder="*res://stats_holder.gd"
+StatsHolder="*res://code/stats_holder.gd"
 
 [display]
 
