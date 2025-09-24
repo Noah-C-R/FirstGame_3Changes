@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=26 format=3 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://code/survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -17,14 +17,25 @@
 [ext_resource type="Script" uid="uid://c0hr5rf05utbc" path="res://scenes/speed_button.gd" id="11_hs66j"]
 [ext_resource type="Script" uid="uid://d2c55e5evoa35" path="res://scenes/health_button.gd" id="13_fp0yo"]
 [ext_resource type="Script" uid="uid://b4drvwbohnr0m" path="res://scenes/gems_screen.gd" id="17_7yhjp"]
+[ext_resource type="Script" uid="uid://bka4xkmmhptny" path="res://scenes/victory_screen.gd" id="17_76kcq"]
 [ext_resource type="PackedScene" uid="uid://bh1ppd0a8vv0o" path="res://particles/confetti_particles.tscn" id="17_46648"]
 [ext_resource type="Script" uid="uid://bxo1wu7xcod0w" path="res://code/gameplay_fx_node.gd" id="19_h0ha7"]
+[ext_resource type="Script" uid="uid://boyjqv4m2h336" path="res://scenes/start_screen.gd" id="19_huv6e"]
+[ext_resource type="Texture2D" uid="uid://2wdhd6p21rs4" path="res://sprites/Play Button.png" id="19_rauhl"]
+[ext_resource type="AudioStream" uid="uid://eye1dnoqjnm4" path="res://audio/background music.wav" id="21_ym3gj"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 2137, 1252, 0, 0, 0, 0, -335, 1262, 0, 0, 0, 0, -335, -309, 0, 0, 0, 0, 2138, -304, 0, 0, 0, 0, 2137, 1252)
 }
 point_count = 5
+
+[sub_resource type="GDScript" id="GDScript_ym3gj"]
+script/source = "extends AudioStreamPlayer
+
+func _on_victory_screen_visibility_changed() -> void:
+	$\".\".play()
+"
 
 [node name="Game" type="Node2D"]
 process_mode = 3
@@ -81,9 +92,9 @@ position = Vector2(1492, 707)
 position = Vector2(284, 319)
 
 [node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 process_mode = 1
 wait_time = 0.5
-autostart = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -233,6 +244,7 @@ theme_override_font_sizes/font_size = 61
 theme_override_icons/icon = ExtResource("5_pk6fm")
 text = "x5"
 icon = ExtResource("5_pk6fm")
+flat = true
 alignment = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -270,6 +282,7 @@ theme_override_font_sizes/font_size = 61
 theme_override_icons/icon = ExtResource("5_pk6fm")
 text = "x5"
 icon = ExtResource("7_mx11s")
+flat = true
 alignment = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -300,12 +313,14 @@ offset_right = 417.0
 offset_bottom = 338.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
 theme_override_icons/icon = ExtResource("5_pk6fm")
 text = "x5"
 icon = ExtResource("8_l3cnu")
+flat = true
 alignment = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -329,10 +344,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -102.0
-offset_bottom = 102.0
+offset_left = -124.0
+offset_top = 19.0
+offset_right = -22.0
+offset_bottom = 121.0
 grow_horizontal = 0
 icon = ExtResource("9_l3cnu")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -342,8 +360,10 @@ script = ExtResource("17_7yhjp")
 
 [node name="TextureRect" type="TextureRect" parent="GemsScreen"]
 modulate = Color(0.720419, 0.544964, 0.965049, 1)
-offset_right = 86.0
-offset_bottom = 86.0
+offset_left = 49.0
+offset_top = 34.0
+offset_right = 135.0
+offset_bottom = 120.0
 texture = ExtResource("6_getvi")
 
 [node name="GemsLabel" type="Label" parent="GemsScreen/TextureRect"]
@@ -369,6 +389,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 process_mode = 3
 visible = false
+script = ExtResource("17_76kcq")
 
 [node name="ColorRect" type="ColorRect" parent="VictoryScreen"]
 anchors_preset = 15
@@ -419,22 +440,107 @@ text = "Play Again?"
 
 [node name="ConfettiParticles" parent="VictoryScreen" instance=ExtResource("17_46648")]
 unique_name_in_owner = true
+position = Vector2(948, 554)
+scale = Vector2(2.84, 2.84)
+amount = 300
+lifetime = 10.35
+visibility_rect = Rect2(-500, -100, 1000, 200)
+
+[node name="VictoryAudioPlayer" type="AudioStreamPlayer" parent="VictoryScreen"]
+script = SubResource("GDScript_ym3gj")
+
+[node name="StartScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("19_huv6e")
+
+[node name="ColorRect" type="ColorRect" parent="StartScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 0.803922)
+
+[node name="InstructionsLabel" type="Label" parent="StartScreen/ColorRect"]
+modulate = Color(1, 0.490196, 0.133333, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -523.0
+offset_top = -410.0
+offset_right = 526.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 133
+text = "Score 175 to win"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="StartScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = 197.0
+offset_right = 224.0
+offset_bottom = 405.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165083, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
+theme_override_font_sizes/font_size = 56
+icon = ExtResource("19_rauhl")
+flat = true
+
+[node name="ControlsLabel" type="Label" parent="StartScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -88.5
+offset_right = 297.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 63
+text = "WASD to move
+Mouse to aim"
+horizontal_alignment = 1
 
 [node name="StatsHolder" type="Node" parent="."]
 script = ExtResource("6_edxvn")
 
 [node name="GunTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+process_mode = 1
 wait_time = 0.7
-autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PickupsAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -10.74
+volume_db = -14.157
 
 [node name="GameplayFXNode" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("19_h0ha7")
+
+[node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_ym3gj")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
@@ -455,6 +561,8 @@ script = ExtResource("19_h0ha7")
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="UpgradeScreen/ColorRect/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
 [connection signal="draw" from="GemsScreen/TextureRect/GemsLabel" to="GemsScreen" method="_on_gems_label_draw"]
+[connection signal="visibility_changed" from="VictoryScreen" to="VictoryScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="VictoryScreen/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="StartScreen/ColorRect/Button" to="StartScreen" method="_on_button_pressed"]
 [connection signal="gems_changed" from="StatsHolder" to="GemsScreen" method="_on_stats_holder_gems_changed"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]

@@ -2,41 +2,41 @@
 
 [ext_resource type="Texture2D" uid="uid://7qxmucglrxqd" path="res://sprites/Confetti.png" id="1_hcmom"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwccr"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hcmom"]
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Curve" id="Curve_5yqum"]
+[sub_resource type="Curve" id="Curve_gwccr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.000938654), -4.12694, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_c2755"]
-curve = SubResource("Curve_5yqum")
+curve = SubResource("Curve_gwccr")
 
-[sub_resource type="Gradient" id="Gradient_hcmom"]
+[sub_resource type="Gradient" id="Gradient_5yqum"]
 offsets = PackedFloat32Array(0.199367, 0.199418, 0.2, 0.423581, 0.425036, 0.603348, 0.605531, 0.788937, 0.790393)
 colors = PackedColorArray(1, 0.254902, 0.490196, 1, 1, 0.254902, 0.490196, 1, 0.0627451, 0.698039, 0.937255, 1, 0.0627451, 0.698039, 0.937255, 1, 1, 0.717647, 0.188235, 1, 1, 0.717647, 0.188235, 1, 0.552941, 0.0980392, 0.843137, 1, 0.552941, 0.0980392, 0.843137, 1, 0.388235, 0.8, 0.372549, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gwccr"]
-gradient = SubResource("Gradient_hcmom")
+gradient = SubResource("Gradient_5yqum")
 
-[sub_resource type="Curve" id="Curve_hcmom"]
+[sub_resource type="Curve" id="Curve_c2755"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.227027, 0.898391), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.03441, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_gwccr"]
-curve = SubResource("Curve_hcmom")
+curve = SubResource("Curve_c2755")
 
-[sub_resource type="Curve" id="Curve_gwccr"]
+[sub_resource type="Curve" id="Curve_74uaa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.745946, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.09843, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_5yqum"]
-curve = SubResource("Curve_gwccr")
+curve = SubResource("Curve_74uaa")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2obp5"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v8yxb"]
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 initial_velocity_min = 130.0
@@ -61,14 +61,13 @@ hue_variation_max = 0.02
 anim_speed_min = 10.0
 anim_speed_max = 20.0
 
-[node name="ConfettiParticles" type="Node2D"]
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_gwccr")
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_hcmom")
 emitting = false
 amount = 50
 texture = ExtResource("1_hcmom")
 lifetime = 4.0
+one_shot = true
 explosiveness = 0.97
 randomness = 0.05
-process_material = SubResource("ParticleProcessMaterial_2obp5")
+process_material = SubResource("ParticleProcessMaterial_v8yxb")

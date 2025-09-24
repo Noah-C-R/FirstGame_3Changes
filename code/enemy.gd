@@ -6,6 +6,7 @@ var health := 2
 var speed := 300.0
 
 @onready var player = get_node("/root/Game/Player")
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	%Slime.play_walk()
@@ -21,6 +22,7 @@ func take_damage():
 	%Slime.play_hurt()
 	
 	if health == 0:
+		audio_stream_player_2d.play()
 		queue_free()
 		
 		get_parent().get_node("ScoreScreen").add_points()

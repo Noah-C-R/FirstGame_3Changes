@@ -1,6 +1,6 @@
 extends Node
 
-@onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer = %PickupsAudioPlayer
 
 
 func display_particles(key: String, position: Vector2):
