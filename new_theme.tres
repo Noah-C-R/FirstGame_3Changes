@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cih6mm0ucyeol"]
+
+[ext_resource type="Texture2D" uid="uid://odwt1jm8a88i" path="res://sprites/Dropdown Icon.png" id="1_amlv4"]
+
+[resource]
+default_font_size = 75
+OptionButton/colors/font_color = Color(1, 1, 1, 1)
+OptionButton/icons/arrow = ExtResource("1_amlv4")

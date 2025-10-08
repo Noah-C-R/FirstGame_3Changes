@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=37 format=4 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://code/survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -23,9 +23,14 @@
 [ext_resource type="AudioStream" uid="uid://cd4idl8asj7q" path="res://audio/victory.wav" id="19_8gmy3"]
 [ext_resource type="Script" uid="uid://bxo1wu7xcod0w" path="res://code/gameplay_fx_node.gd" id="19_h0ha7"]
 [ext_resource type="Script" uid="uid://boyjqv4m2h336" path="res://scenes/start_screen.gd" id="19_huv6e"]
-[ext_resource type="Texture2D" uid="uid://2wdhd6p21rs4" path="res://sprites/Play Button.png" id="19_rauhl"]
 [ext_resource type="AudioStream" uid="uid://eye1dnoqjnm4" path="res://audio/background music.wav" id="21_ym3gj"]
+[ext_resource type="Texture2D" uid="uid://62sev7dqjise" path="res://sprites/Play Button 2.png" id="22_c0lnf"]
+[ext_resource type="Texture2D" uid="uid://donek160ov474" path="res://sprites/Settings Button.png" id="23_q1qpi"]
+[ext_resource type="Theme" uid="uid://cih6mm0ucyeol" path="res://new_theme.tres" id="24_q1qpi"]
 [ext_resource type="Texture2D" uid="uid://hicyglj1ar2m" path="res://sprites/Fences.png" id="25_cjyux"]
+[ext_resource type="Theme" uid="uid://jcokc5kk5mhr" path="res://base_theme.tres" id="25_oa1dh"]
+[ext_resource type="Texture2D" uid="uid://c1ki2vr3p2hex" path="res://sprites/Music Icon.png" id="26_nvqit"]
+[ext_resource type="Texture2D" uid="uid://dfo7klqy4n7g3" path="res://sprites/Sound Icon.png" id="27_5plyu"]
 [ext_resource type="PackedScene" uid="uid://cjw2m2scfdru" path="res://lock.tscn" id="27_nkvhx"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jj1j"]
@@ -1188,6 +1193,7 @@ script = SubResource("GDScript_ym3gj")
 [node name="StartScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 script = ExtResource("19_huv6e")
 
 [node name="ColorRect" type="ColorRect" parent="StartScreen"]
@@ -1236,8 +1242,9 @@ size_flags_vertical = 4
 theme_override_colors/font_hover_pressed_color = Color(0.323027, 0.235019, 0.165083, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_font_sizes/font_size = 56
-icon = ExtResource("19_rauhl")
+icon = ExtResource("22_c0lnf")
 flat = true
+icon_alignment = 1
 
 [node name="ControlsLabel" type="Label" parent="StartScreen/ColorRect"]
 layout_mode = 1
@@ -1253,9 +1260,158 @@ offset_bottom = 88.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 63
-text = "WASD to move
-Mouse to aim"
+text = "WASD to move"
 horizontal_alignment = 1
+
+[node name="ControlsLabel2" type="Label" parent="StartScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -12.0
+offset_right = 297.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 63
+text = "mouse to aim"
+horizontal_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="StartScreen"]
+anchors_preset = -1
+anchor_left = 0.885417
+anchor_top = 0.0138889
+anchor_right = 0.99375
+anchor_bottom = 0.206481
+grow_horizontal = 0
+icon = ExtResource("23_q1qpi")
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsPanel" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("19_huv6e")
+
+[node name="BackgroundColor" type="ColorRect" parent="SettingsPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 0.803922)
+
+[node name="SettingsColorRect" type="ColorRect" parent="SettingsPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 255.0
+offset_top = 122.0
+offset_right = -255.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0.690196, 0.341176, 0.215686, 1)
+
+[node name="SettingsTitleLabel" type="Label" parent="SettingsPanel/SettingsColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -523.0
+offset_top = -410.0
+offset_right = 526.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 133
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="SettingsPanel/SettingsColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.5
+offset_top = 52.0
+offset_right = 228.5
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("24_q1qpi")
+flat = true
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Español"
+popup/item_1/id = 1
+
+[node name="CheckButton" type="CheckButton" parent="SettingsPanel/SettingsColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -153.0
+offset_right = -133.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("25_oa1dh")
+theme_override_font_sizes/font_size = 1
+action_mode = 0
+icon = ExtResource("26_nvqit")
+flat = true
+
+[node name="CheckButton2" type="CheckButton" parent="SettingsPanel/SettingsColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 140.0
+offset_top = -153.0
+offset_right = 556.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("25_oa1dh")
+theme_override_font_sizes/font_size = 1
+action_mode = 0
+icon = ExtResource("27_5plyu")
+flat = true
+
+[node name="ExitButton" type="Button" parent="SettingsPanel"]
+modulate = Color(1, 0.496382, 0.588116, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -367.0
+offset_top = 130.0
+offset_right = -265.0
+offset_bottom = 232.0
+grow_horizontal = 0
+icon = ExtResource("9_l3cnu")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="StatsHolder" type="Node" parent="."]
 script = ExtResource("6_edxvn")
@@ -1283,6 +1439,7 @@ autoplay = true
 z_index = -1
 tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAACAAIAAAACAAAAAAADAAIAAAACAAAAAAAEAAIAAAACAAAAAAAFAAIAAAAAAAEAAAAHAAIAAAACAAEAAAAIAAIAAAACAAAAAAAJAAIAAAACAAAAAAAKAAIAAAACAAAAAAALAAIAAAACAAAAAAAMAAIAAAADAAAAAAANAAIAAAADAAEAAAAAAAIAAAADAAEAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAcAAAAAAAIAAAANAAMAAAAAAAIAAAANAAQAAAAAAAIAAAANAAUAAAAAAAIAAAANAAYAAAAAAAIAAAANAAcAAAAAAAIAAAABAAcAAAAAAAIAAAACAAcAAAAAAAIAAAADAAcAAAAAAAIAAAAEAAcAAAAAAAIAAAAFAAcAAAAAAAIAAAAGAAcAAAAAAAIAAAAHAAcAAAAAAAIAAAAIAAcAAAAAAAIAAAAJAAcAAAAAAAIAAAAKAAcAAAAAAAIAAAALAAcAAAAAAAIAAAAMAAcAAAAAAAIAAAD//wEAAAAAAAIAAAD+/wAAAAAAAAIAAAD+/wEAAAAAAAIAAAD9/wAAAAAAAAIAAAD9/wEAAAAAAAIAAAD9////AAAAAAIAAAD9//7/AAAAAAIAAAD9//3/AAAAAAIAAAD9//z/AAAAAAIAAAD9//v/AAAAAAIAAAD+//r/AAAAAAIAAAD+//n/AAAAAAIAAAD///n/AAAAAAIAAAD///j/AAAAAAIAAAAAAPj/AAAAAAIAAAAAAPf/AAAAAAIAAAAEAPz/AAAAAAIAAAAEAP3/AAAAAAIAAAAFAP3/AAAAAAIAAAAGAP3/AAAAAAIAAAAGAPz/AAAAAAIAAAAFAPz/AAAAAAIAAAAEAPv/AAAAAAIAAAAFAPv/AAAAAAIAAAAGAPv/AAAAAAIAAAAHAPz/AAAAAAIAAAAHAP3/AAAAAAIAAAAFAP7/AAAAAAIAAAAGAP7/AAAAAAIAAAAOAAEAAAAAAAIAAAAPAAAAAAAAAAIAAAAPAP//AAAAAAIAAAAQAP//AAAAAAIAAAAQAP7/AAAAAAIAAAAQAP3/AAAAAAIAAAAQAPz/AAAAAAIAAAARAPz/AAAAAAIAAAARAPv/AAAAAAIAAAARAPr/AAAAAAIAAAAQAPr/AAAAAAIAAAAQAPn/AAAAAAIAAAAPAPn/AAAAAAIAAAAOAPn/AAAAAAIAAAANAPn/AAAAAAIAAAANAPj/AAAAAAIAAAAMAPj/AAAAAAIAAAALAPj/AAAAAAIAAAALAPf/AAAAAAIAAAAKAPf/AAAAAAIAAAAMAP3/AAADAAEAAAAKAPv/AAADAAEAAAAAAP3/AAADAAEAAAABAPf/AAADAAEAAAACAPf/AAADAAEAAAACAPj/AAADAAEAAAAJAPb/AAADAAEAAAAIAPb/AAADAAEAAAAIAPf/AAADAAEAAAAJAPf/AAADAAEAAAAKAPb/AAAAAAIAAAALAPb/AAAAAAIAAAAMAPb/AAAAAAIAAAAMAPf/AAAAAAIAAAANAPf/AAAAAAIAAAAOAPj/AAAAAAIAAAAPAPj/AAAAAAIAAAAQAPj/AAAAAAIAAAARAPn/AAAAAAIAAAASAPr/AAAAAAIAAAASAPv/AAAAAAIAAAASAPz/AAAAAAIAAAASAP3/AAAAAAIAAAARAP3/AAAAAAIAAAARAP7/AAAAAAIAAAARAP//AAAAAAIAAAASAP//AAAAAAIAAAASAP7/AAAAAAIAAAARAAAAAAAAAAIAAAAQAAAAAAAAAAIAAAAPAAEAAAAAAAIAAAAPAAIAAAAAAAIAAAAOAAIAAAAAAAIAAAAQAAEAAAAAAAIAAAARAAEAAAAAAAIAAAASAAAAAAAAAAIAAAATAP//AAAAAAIAAAATAP7/AAAAAAIAAAATAP3/AAAAAAIAAAATAPz/AAAAAAIAAAATAPv/AAAAAAIAAAATAPr/AAAAAAIAAAATAPn/AAAAAAIAAAASAPn/AAAAAAIAAAASAPj/AAAAAAIAAAARAPj/AAAAAAIAAAARAPf/AAAAAAIAAAAQAPf/AAAAAAIAAAAPAPf/AAAAAAIAAAAPAPb/AAAAAAIAAAAOAPb/AAAAAAIAAAANAPb/AAAAAAIAAAAOAPf/AAAAAAIAAAAQAPv/AAAAAAIAAAD///b/AAAAAAIAAAD///f/AAAAAAIAAAD+//j/AAAAAAIAAAD9//n/AAAAAAIAAAD9//r/AAAAAAIAAAD8//v/AAAAAAIAAAD8//z/AAAAAAIAAAD8//3/AAAAAAIAAAD8//7/AAAAAAIAAAD8////AAAAAAIAAAD8/wAAAAAAAAIAAAD8/wEAAAAAAAIAAAD8/wIAAAAAAAIAAAD9/wIAAAAAAAIAAAD+/wIAAAAAAAIAAAD//wIAAAAAAAIAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAAAAAIAAAD//wcAAAAAAAIAAAD8/wMAAAAAAAIAAAD8/wQAAAAAAAIAAAD8/wUAAAAAAAIAAAD9/wUAAAAAAAIAAAD9/wYAAAAAAAIAAAD9/wcAAAAAAAIAAAD+/wYAAAAAAAIAAAD+/wUAAAAAAAIAAAD+/wQAAAAAAAIAAAD+/wMAAAAAAAIAAAD9/wMAAAAAAAIAAAD9/wQAAAAAAAIAAAD+/wcAAAAAAAIAAAD+/wgAAAAAAAIAAAD//wgAAAAAAAIAAAAAAAgAAAAAAAIAAAABAAgAAAAAAAIAAAACAAgAAAAAAAIAAAADAAgAAAAAAAIAAAAEAAgAAAAAAAIAAAAFAAgAAAAAAAIAAAAGAAgAAAAAAAIAAAAHAAgAAAAAAAIAAAAIAAgAAAAAAAIAAAAJAAgAAAAAAAIAAAAKAAgAAAAAAAIAAAALAAgAAAAAAAIAAAAMAAgAAAAAAAIAAAANAAgAAAAAAAIAAAAOAAgAAAAAAAIAAAAOAAcAAAAAAAIAAAAPAAYAAAAAAAIAAAAPAAUAAAAAAAIAAAAOAAQAAAAAAAIAAAAOAAMAAAAAAAIAAAAOAAUAAAAAAAIAAAAOAAYAAAAAAAIAAAAPAAQAAAAAAAIAAAAPAAMAAAAAAAIAAAAQAAMAAAAAAAIAAAAQAAQAAAAAAAIAAAAQAAUAAAAAAAIAAAAPAAcAAAAAAAIAAAAQAAIAAAAAAAIAAAARAAMAAAAAAAIAAAARAAIAAAAAAAIAAAARAAQAAAAAAAIAAAARAAUAAAAAAAIAAAARAAYAAAAAAAIAAAAQAAYAAAAAAAIAAAAQAAcAAAAAAAIAAAAQAAgAAAAAAAIAAAAPAAgAAAAAAAIAAAAPAAkAAAAAAAIAAAAQAAkAAAAAAAIAAAARAAgAAAAAAAIAAAARAAcAAAAAAAIAAAAOAAkAAAAAAAIAAAANAAkAAAAAAAIAAAAMAAkAAAAAAAIAAAALAAkAAAAAAAIAAAAKAAkAAAAAAAIAAAAJAAkAAAAAAAIAAAAIAAkAAAAAAAIAAAAHAAkAAAAAAAIAAAAGAAkAAAAAAAIAAAAFAAkAAAAAAAIAAAAEAAkAAAAAAAIAAAADAAkAAAAAAAIAAAACAAkAAAAAAAIAAAABAAkAAAAAAAIAAAAAAAkAAAAAAAIAAAD//wkAAAAAAAIAAAD9/wgAAAAAAAIAAAD8/wgAAAAAAAIAAAD8/wcAAAAAAAIAAAD8/wYAAAAAAAIAAAD7/wUAAAAAAAIAAAADAPf/AAABAAAAAAAEAPf/AAAAAAEAAAAGAPf/AAACAAEAAAAHAPf/AAADAAAAAAAAAPb/AAAAAAIAAAD///X/AAAAAAIAAAD+//T/AAAAAAIAAAD9//P/AAAAAAIAAAD8//L/AAAAAAIAAAD7//H/AAAAAAIAAAD6//D/AAAAAAIAAAD5//D/AAAAAAIAAAD6//H/AAAAAAIAAAD7//L/AAAAAAIAAAD8//P/AAAAAAIAAAD9//T/AAAAAAIAAAD+//X/AAAAAAIAAAAKAPX/AAAAAAIAAAALAPX/AAAAAAIAAAALAPT/AAAAAAIAAAAMAPT/AAAAAAIAAAAMAPP/AAAAAAIAAAANAPP/AAAAAAIAAAAOAPP/AAAAAAIAAAAOAPL/AAAAAAIAAAAPAPL/AAAAAAIAAAAQAPH/AAAAAAIAAAARAPD/AAAAAAIAAAARAO//AAAAAAIAAAASAO//AAAAAAIAAAASAO7/AAAAAAIAAAATAO7/AAAAAAIAAAASAPD/AAAAAAIAAAARAPH/AAAAAAIAAAARAPL/AAAAAAIAAAAQAPL/AAAAAAIAAAAQAPP/AAAAAAIAAAAQAPT/AAAAAAIAAAAPAPT/AAAAAAIAAAAOAPT/AAAAAAIAAAANAPT/AAAAAAIAAAANAPX/AAAAAAIAAAAPAPP/AAAAAAIAAAARAPP/AAAAAAIAAAAMAPX/AAAAAAIAAAAOAPX/AAAAAAIAAAAPAPX/AAAAAAIAAAAQAPX/AAAAAAIAAAARAPX/AAAAAAIAAAASAPX/AAAAAAIAAAARAPT/AAAAAAIAAAASAPP/AAAAAAIAAAASAPL/AAAAAAIAAAATAPH/AAAAAAIAAAATAPD/AAAAAAIAAAATAO//AAAAAAIAAAASAPH/AAAAAAIAAAAAAPP/AAABAAAAAAABAPP/AAABAAAAAAACAPP/AAABAAAAAAADAPP/AAADAAAAAAAIAPD/AAADAAAAAAAHAPD/AAACAAAAAAAGAPD/AAACAAAAAAAFAPD/AAACAAAAAAAEAPD/AAACAAAAAAADAPD/AAABAAAAAAAEAOz/AAACAAEAAAACAOz/AAAAAAEAAAABAOz/AAABAAAAAAAFAOz/AAADAAAAAAAGAOz/AAADAAEAAAAAAOz/AAADAAEAAAD//+v/AAAAAAIAAAD+/+v/AAAAAAIAAAD9/+v/AAAAAAIAAAD9/+z/AAAAAAIAAAD8/+z/AAAAAAIAAAD8/+3/AAAAAAIAAAD7/+3/AAAAAAIAAAD7/+7/AAAAAAIAAAD6/+7/AAAAAAIAAAD6/+//AAAAAAIAAAD5/+//AAAAAAIAAAD5/+7/AAAAAAIAAAD6/+3/AAAAAAIAAAD7/+z/AAAAAAIAAAD8/+v/AAAAAAIAAAD9/+r/AAAAAAIAAAD+/+r/AAAAAAIAAAD//+r/AAAAAAIAAAD5//H/AAAAAAIAAAD5//L/AAAAAAIAAAD6//L/AAAAAAIAAAD6//P/AAAAAAIAAAD7//P/AAAAAAIAAAD7//T/AAAAAAIAAAD7//X/AAAAAAIAAAD8//X/AAAAAAIAAAD9//X/AAAAAAIAAAD9//b/AAAAAAIAAAD+//b/AAAAAAIAAAD8//T/AAAAAAIAAAAHAOz/AAAAAAIAAAAHAOv/AAAAAAIAAAAIAOv/AAAAAAIAAAAJAOv/AAAAAAIAAAAJAOr/AAAAAAIAAAAKAOr/AAAAAAIAAAALAOr/AAAAAAIAAAAMAOr/AAAAAAIAAAAMAOv/AAAAAAIAAAANAOv/AAAAAAIAAAAOAOv/AAAAAAIAAAAPAOv/AAAAAAIAAAAQAOv/AAAAAAIAAAAQAOz/AAAAAAIAAAARAOz/AAAAAAIAAAASAOz/AAAAAAIAAAATAOz/AAAAAAIAAAATAO3/AAAAAAIAAAASAO3/AAAAAAIAAAASAOv/AAAAAAIAAAATAOv/AAAAAAIAAAARAOv/AAAAAAIAAAARAOr/AAAAAAIAAAAQAOr/AAAAAAIAAAAQAOn/AAAAAAIAAAAPAOn/AAAAAAIAAAAOAOn/AAAAAAIAAAANAOn/AAAAAAIAAAAPAOr/AAAAAAIAAAAOAOr/AAAAAAIAAAANAOr/AAAAAAIAAAANAOj/AAAAAAIAAAAMAOj/AAAAAAIAAAALAOj/AAAAAAIAAAALAOn/AAAAAAIAAAAKAOn/AAAAAAIAAAAJAOn/AAAAAAIAAAAIAOn/AAAAAAIAAAAMAOn/AAAAAAIAAAAIAOr/AAAAAAIAAAAHAOr/AAAAAAIAAAAGAOv/AAAAAAIAAAAGAOr/AAAAAAIAAAAHAOn/AAAAAAIAAAAIAOj/AAAAAAIAAAAJAOj/AAAAAAIAAAAKAOj/AAAAAAIAAAAAAOv/AAAAAAIAAAABAOv/AAAAAAIAAAABAOr/AAAAAAIAAAAAAOr/AAAAAAIAAAD//+n/AAAAAAIAAAD+/+n/AAAAAAIAAAD9/+n/AAAAAAIAAAASAOr/AAAAAAIAAAANAO7/AAADAAEAAAAKAO7/AAADAAEAAAA=")
 tile_set = SubResource("TileSet_5fga3")
+metadata/_edit_lock_ = true
 
 [node name="Lock" parent="." instance=ExtResource("27_nkvhx")]
 position = Vector2(910, 350)
@@ -1316,5 +1473,8 @@ position = Vector2(491, -2730)
 [connection signal="visibility_changed" from="VictoryScreen" to="VictoryScreen" method="_on_visibility_changed"]
 [connection signal="pressed" from="VictoryScreen/ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="StartScreen/ColorRect/Button" to="StartScreen" method="_on_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/ExitButton" to="Player" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/ExitButton" to="Player/Gun" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/ExitButton" to="UpgradeScreen" method="_on_exit_button_pressed"]
 [connection signal="gems_changed" from="StatsHolder" to="GemsScreen" method="_on_stats_holder_gems_changed"]
 [connection signal="timeout" from="GunTimer" to="Player/Gun" method="_on_gun_timer_timeout"]
