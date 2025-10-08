@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://vdex45gnvs2y"
+
+[deps]
+
+files=["res://translations/Untitled spreadsheet - translation_key.en.translation", "res://translations/Untitled spreadsheet - translation_key.es.translation"]
+
+source_file="res://translations/Untitled spreadsheet - translation_key.csv"
+dest_files=["res://translations/Untitled spreadsheet - translation_key.en.translation", "res://translations/Untitled spreadsheet - translation_key.es.translation"]
+
+[params]
+
+compress=true
+delimiter=0
