@@ -1,6 +1,10 @@
 extends Node2D
 
-const REQ_GEMS := 10
+const REQ_GEMS := 30
+
+func _ready() -> void:
+	var label = %GemsReqLabel
+	label.text = str(REQ_GEMS)
 
 func perform_gem_check():
 	if(StatsHolder.gems >= REQ_GEMS):

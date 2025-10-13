@@ -75,6 +75,7 @@ grow_vertical = 2
 texture = ExtResource("6_ebkbn")
 
 [node name="GemsReqLabel" type="Label" parent="TextureRect"]
+unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
 anchors_preset = 6

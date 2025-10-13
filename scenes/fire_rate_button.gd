@@ -17,7 +17,8 @@ func _on_pressed() -> void:
 		self.disabled = true #disable the button
 		self.modulate = Color("#bf8d0d")
 	else:
-		self.modulate = Color("#bf8d0d")
+		self.disabled = true
+		self.modulate = Color("#c41d3d")
 
 func _on_upgrade_screen_visibility_changed() -> void:
 	if visible == true:

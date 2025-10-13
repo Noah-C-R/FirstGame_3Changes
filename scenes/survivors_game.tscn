@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://1a2ko7bwvol1"]
+[gd_scene load_steps=44 format=4 uid="uid://1a2ko7bwvol1"]
 
 [ext_resource type="Script" uid="uid://bnn47nv26usgh" path="res://code/survivors_game.gd" id="1_qqaft"]
 [ext_resource type="PackedScene" uid="uid://cyfin2j6l8sgm" path="res://scenes/pine_tree.tscn" id="1_y3pti"]
@@ -30,6 +30,7 @@
 [ext_resource type="Theme" uid="uid://cih6mm0ucyeol" path="res://new_theme.tres" id="24_q1qpi"]
 [ext_resource type="Texture2D" uid="uid://hicyglj1ar2m" path="res://sprites/Fences.png" id="25_cjyux"]
 [ext_resource type="Theme" uid="uid://jcokc5kk5mhr" path="res://base_theme.tres" id="25_oa1dh"]
+[ext_resource type="Script" uid="uid://cyx3cuvbflyp3" path="res://scenes/option_button.gd" id="26_dymio"]
 [ext_resource type="Texture2D" uid="uid://c1ki2vr3p2hex" path="res://sprites/Music Icon.png" id="26_nvqit"]
 [ext_resource type="Texture2D" uid="uid://dfo7klqy4n7g3" path="res://sprites/Sound Icon.png" id="27_5plyu"]
 [ext_resource type="Script" uid="uid://dhk8j3gfn41n8" path="res://scenes/music_check_button.gd" id="27_aheiu"]
@@ -166,7 +167,8 @@ offset_right = 379.5
 offset_bottom = 182.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 133
-text = "Game Over!"
+text = "LOSE
+"
 
 [node name="FinalScoreLabel" type="Label" parent="GameOverScreen/ColorRect"]
 unique_name_in_owner = true
@@ -249,7 +251,7 @@ offset_right = 379.5
 offset_bottom = 182.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 133
-text = "Level Up!"
+text = "LEVEL_UP"
 horizontal_alignment = 1
 
 [node name="UpgradeHeaderLabel2" type="Label" parent="UpgradeScreen/ColorRect/UpgradeHeaderLabel"]
@@ -264,7 +266,7 @@ offset_right = 297.0
 offset_bottom = 87.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 63
-text = "Choose an Upgrade"
+text = "LEVEL_UP_DESC"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -281,7 +283,7 @@ offset_right = 64.0
 offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0.366595, 0.366595, 0.366595, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
@@ -319,7 +321,7 @@ offset_right = -210.0
 offset_bottom = 338.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0.364706, 0.364706, 0.364706, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
@@ -357,7 +359,7 @@ offset_right = 417.0
 offset_bottom = 338.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0.364706, 0.364706, 0.364706, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.93845, 0.93845, 0.93845, 1)
 theme_override_colors/font_color = Color(0.720419, 0.544964, 0.965049, 1)
 theme_override_font_sizes/font_size = 61
@@ -460,7 +462,7 @@ offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 133
-text = "Victory!"
+text = "WIN"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VictoryScreen/ColorRect"]
@@ -524,7 +526,7 @@ offset_bottom = -228.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 133
-text = "Score 175 to win"
+text = "OBJECTIVE"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="StartScreen/ColorRect"]
@@ -563,7 +565,7 @@ offset_bottom = 88.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 63
-text = "WASD to move"
+text = "CONTROLLS_ONE"
 horizontal_alignment = 1
 
 [node name="ControlsLabel2" type="Label" parent="StartScreen/ColorRect"]
@@ -580,7 +582,7 @@ offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 63
-text = "mouse to aim"
+text = "CONTROLLS_TWO"
 horizontal_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="StartScreen"]
@@ -597,6 +599,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsPanel" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 script = ExtResource("24_56ad6")
 
 [node name="BackgroundColor" type="ColorRect" parent="SettingsPanel"]
@@ -637,10 +640,10 @@ offset_bottom = -228.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 133
-text = "Settings"
+text = "SETTINGS"
 horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="SettingsPanel/SettingsColorRect"]
+[node name="LanguageOptionButton" type="OptionButton" parent="SettingsPanel/SettingsColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -658,10 +661,11 @@ flat = true
 alignment = 1
 selected = 0
 item_count = 2
-popup/item_0/text = "English"
+popup/item_0/text = "en"
 popup/item_0/id = 0
-popup/item_1/text = "Español"
+popup/item_1/text = "es"
 popup/item_1/id = 1
+script = ExtResource("26_dymio")
 
 [node name="MusicCheckButton" type="CheckButton" parent="SettingsPanel/SettingsColorRect"]
 layout_mode = 1
@@ -795,6 +799,7 @@ bus = &"SoundFX"
 [connection signal="pressed" from="VictoryScreen/ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="StartScreen/ColorRect/PlayButton" to="StartScreen" method="_on_button_pressed"]
 [connection signal="pressed" from="StartScreen/SettingsButton" to="SettingsPanel" method="_on_settings_button_pressed"]
+[connection signal="item_selected" from="SettingsPanel/SettingsColorRect/LanguageOptionButton" to="SettingsPanel/SettingsColorRect/LanguageOptionButton" method="_on_item_selected"]
 [connection signal="toggled" from="SettingsPanel/SettingsColorRect/MusicCheckButton" to="SettingsPanel/SettingsColorRect/MusicCheckButton" method="_on_toggled"]
 [connection signal="toggled" from="SettingsPanel/SettingsColorRect/SFXCheckButton" to="SettingsPanel/SettingsColorRect/SFXCheckButton" method="_on_toggled"]
 [connection signal="pressed" from="SettingsPanel/ExitButton" to="SettingsPanel" method="_on_exit_button_pressed"]

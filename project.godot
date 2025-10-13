@@ -131,7 +131,6 @@ move_down={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/Untitled spreadsheet - translation_key.en.translation", "res://translations/Untitled spreadsheet - translation_key.es.translation")
-locale/test="es"
 
 [layer_names]
 
